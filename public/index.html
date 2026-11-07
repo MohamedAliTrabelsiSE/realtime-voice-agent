@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Voice Agent Test Lab</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1>Voice Agent Test Lab</h1>
+        <p class="muted" id="business">Real-time AI receptionist</p>
+      </div>
+      <div class="badges">
+        <span class="badge" id="mode">mode: ?</span>
+        <span class="badge" id="status">disconnected</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="panel call">
+        <h2>Call</h2>
+        <label class="field">
+          Caller name (optional)
+          <input id="callerName" placeholder="Jane Doe" maxlength="80" />
+        </label>
+        <div class="row">
+          <button id="startBtn" class="primary">Start call</button>
+          <button id="micBtn" disabled>Mic on</button>
+          <button id="hangupBtn" class="danger" disabled>Hang up</button>
+        </div>
+        <div class="meter"><div id="meterBar"></div></div>
+        <p class="muted small" id="hint">
+          Mock mode understands typed messages such as "what slots are available" or "book
+          2026-01-05T10:00 for Jane Doe phone +15551234567".
+        </p>
+
+        <h2>Transcript</h2>
+        <div id="transcript" class="transcript" aria-live="polite"></div>
+        <form id="textForm" class="row">
+          <input id="textInput" placeholder="Type a message to the agent..." disabled />
+          <button type="submit" id="sendBtn" disabled>Send</button>
+        </form>
+      </section>
+
+      <section class="panel side">
+        <h2>Tool calls</h2>
+        <div id="tools" class="tools"></div>
+
+        <h2>
+          Free slots
+          <button id="refreshSlots" class="link">refresh</button>
+        </h2>
+        <div id="slots" class="chips"></div>
+
+        <h2>Appointments</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>When</th>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="appointments"></tbody>
+        </table>
+
+        <h2>Last call summary</h2>
+        <pre id="summary" class="muted">-</pre>
+      </section>
+    </main>
+
+    <footer class="muted small">
+      <a href="/docs">API docs</a> · <a href="/health">health</a> · WebSocket:
+      <code>/voice/stream</code>
+    </footer>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
